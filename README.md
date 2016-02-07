@@ -7,9 +7,8 @@ Some common utilities and helpers for angular.js projects.
 
 ## Install
 
-[![NPM](https://nodei.co/npm/angular-util.png)](https://nodei.co/npm/angular-util/)
-
 ### NPM
+[![NPM](https://nodei.co/npm/angular-util.png)](https://nodei.co/npm/angular-util/)
 ```bash
 $ npm install --save angular-util
 ```
@@ -25,7 +24,7 @@ $ jspm install npm:angular-util
 import { Base, inject } from 'angular-util';
 
 @inject('log', '$timeout')
-export default class MyController extends Base {
+class MyController extends Base {
   init () {
     this.$timeout(this.sayHello, 5000);
   }
@@ -39,7 +38,7 @@ export default class MyController extends Base {
 ## API
 
 ### `Base` (Class)
-A base class which automatically injects its dependencies and then invokes `init` if defined.
+A base class which automatically injects dependencies and then invokes an `init` method (if defined).
 
 #### Usage
 ```javascript
@@ -55,7 +54,8 @@ class MyService extends Base {
 ```
 
 ### `inject` (decorator)
-A decorator to define `$inject`. Can be used as an alternative to defining a static `$inject` property
+A decorator to define your dependencies. Just sugar for defining a static `$inject` property.
+Each argument should be the name of the injectable as a String.
 
 #### Usage
 ```javascript
@@ -70,7 +70,13 @@ class MyController extends Base {
 ```
 
 ### `injector` (function)
-For manual dependency injection
+For manual dependency injection in custom classes. Should be called from your constructor.
+
+#### Arguments
+- `instance` - Generally `this`
+- `args` - An array of injectables (as passed to the constructor)
+- `$inject` - An array of dependencies to inject as strings. Omit to use `instance.constructor.$inject`
+- `varName` - Alters the property name to look for injectable names (defaults to '$inject')
 
 #### Usage
 ```javascript
@@ -80,7 +86,7 @@ class MyController {
   static $inject = ['$scope', '$log']
 
   constructor (...args) {
-    injector(this, args)
+    injector(this, args);
     this.$log('Hello');
   }
 }
