@@ -1,0 +1,42 @@
+{
+  "name": "angular-util",
+  "version": "0.0.2",
+  "description": "Utilities for Angular apps",
+  "registry": "npm",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jameswyse/angular-util.git"
+  },
+  "keywords": [
+    "ng",
+    "angular",
+    "util",
+    "es6",
+    "es2015",
+    "inject",
+    "injector",
+    "decorator",
+    "annotate"
+  ],
+  "author": "James Wyse <james@jameswyse.net> (http://www.lemoncreative.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jameswyse/angular-util/issues"
+  },
+  "homepage": "https://github.com/jameswyse/angular-util#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13"
+  },
+  "jspm": {
+    "directories": {
+      "lib": "src"
+    },
+    "main": "index",
+    "format": "es6"
+  }
+}
